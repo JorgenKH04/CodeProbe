@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server';
 
 export async function GET(req: NextRequest, context: { params: { username: string } }) {
   try {
-    const res = await fetch(`https://api.github.com/search/${context.params.username}`);
+    const res = await fetch(`https://api.github.com/search/users?q=${context.params.username}`);
     if (res.ok) {
       const response: UsersSearchResultType = await res.json();
       return new Response(JSON.stringify({ response }));
